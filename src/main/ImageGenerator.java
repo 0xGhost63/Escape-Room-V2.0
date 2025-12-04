@@ -194,8 +194,10 @@ public class ImageGenerator {
         g = water.createGraphics();
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         
-        g.setColor(new java.awt.Color(50, 150, 255, 180));
+        // g.setColor(new java.awt.Color(50, 150, 255, 180));
+        g.setColor(new java.awt.Color(255, 85, 0, 180));
         g.fillRect(0, 0, 120, 50);
+        
         
         // Water waves
         g.setColor(new java.awt.Color(100, 200, 255, 150));

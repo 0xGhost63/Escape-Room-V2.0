@@ -149,7 +149,7 @@ public class EscapeRoomGame
         platforms.add(new Platform(750, HEIGHT - 200, 100, 20, Color.rgb(100, 100, 100)));
 
         // Water pool
-        platforms.add(new Platform(600, HEIGHT - 50, 120, 50, Color.rgb(50, 150, 255)));
+        platforms.add(new Platform(600, HEIGHT - 50, 120, 50, Color.rgb(255, 85, 0)));
 
         enemies.add(new Enemy(350, HEIGHT - 100, "fire"));
         enemies.add(new Enemy(800, HEIGHT - 250, "normal"));
@@ -231,8 +231,7 @@ public class EscapeRoomGame
         platforms.add(new Platform(1000, HEIGHT - 460, 90, 20, Color.rgb(100, 100, 100)));
         
         // Water hazard
-        platforms.add(new Platform(650, HEIGHT - 180, 110, 50, Color.rgb(50, 150, 255)));
-        
+        platforms.add(new Platform(650, HEIGHT - 180, 110, 50, Color.rgb(255, 85, 0)));        
         // Strategic color placement
         coloredBlocks.add(new ColoredBlock(160, HEIGHT - 180, 50, 50, "red"));
         coloredBlocks.add(new ColoredBlock(235, HEIGHT - 510, 50, 50, "yellow"));
@@ -1015,7 +1014,7 @@ public class EscapeRoomGame
             this.width = width;
             this.height = height;
             this.color = color;
-            this.isWater = color.equals(Color.rgb(50, 150, 255));
+            this.isWater = color.equals(Color.rgb(255, 85, 0));        
         }
 
         void draw(GraphicsContext gc, ResourceManager rm) {
