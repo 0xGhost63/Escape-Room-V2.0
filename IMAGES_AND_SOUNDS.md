@@ -5,7 +5,7 @@ The game now uses image resources instead of hardcoded drawing, and includes a s
 
 ## Generated Images
 
-All images have been automatically generated and are located in `src/main/resources/images/`:
+All images have been automatically generated and are located in `src/resources/images/`:
 
 ### Background
 - `background/background.png` - Sky gradient with clouds
@@ -56,7 +56,7 @@ All images have been automatically generated and are located in `src/main/resour
 
 ## Sound Effects
 
-Sound files should be placed in `src/main/resources/sounds/`:
+Sound files should be placed in `src/resources/sounds/`:
 
 ### Required Sounds (Optional - game works without them):
 1. **jump.wav** - Player jump sound
@@ -106,7 +106,7 @@ You can replace any generated image with your own custom artwork:
 
 To regenerate all images, run:
 ```bash
-mvn compile exec:java -Dexec.mainClass="com.escaperoomv2.ImageGenerator"
+mvn compile exec:java -Dexec.mainClass="ImageGenerator"
 ```
 
 ## Notes

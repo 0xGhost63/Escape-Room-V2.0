@@ -35,6 +35,13 @@
     </dependencies>
 
     <build>
+        <!-- Updated layout: Java under src/main, resources under src/resources -->
+        <sourceDirectory>src/main</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>src/resources</directory>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -50,7 +57,8 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>com.escaperoomv2.EsscapeRoomApp</mainClass>
+                    <!-- Main class is in the default package under src/main -->
+                    <mainClass>EsscapeRoomApp</mainClass>
                     <jvmArgs>
                         <jvmArg>-Xms256m</jvmArg>
                         <jvmArg>-Xmx512m</jvmArg>

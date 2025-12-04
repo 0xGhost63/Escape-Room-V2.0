@@ -1,5 +1,3 @@
-package com.escaperoomv2;
-
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;

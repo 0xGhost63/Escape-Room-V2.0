@@ -1,5 +1,3 @@
-package com.escaperoomv2;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 

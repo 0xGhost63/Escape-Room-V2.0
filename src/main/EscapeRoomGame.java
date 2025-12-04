@@ -1,5 +1,3 @@
-package com.escaperoomv2;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -67,8 +65,10 @@ public class EscapeRoomGame
 
     // Shared leaderboard across runs of the game instance
     private static final ArrayList<LeaderboardEntry> leaderboard = new ArrayList<>();
+    // Store the leaderboard in a visible text file under the project's resources folder
+    // so it is easy to inspect and edit during development.
     private static final String LEADERBOARD_FILE =
-            System.getProperty("user.home") + File.separator + ".color_absorption_leaderboard.txt";
+            "src" + File.separator + "resources" + File.separator + "leaderboard.txt";
 
     public EscapeRoomGame() {
         random = new Random();
