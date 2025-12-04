@@ -55,7 +55,8 @@ public class EsscapeRoomApp extends Application
         primaryStage.setScene(startScene);
     }
 
-    private Scene buildSplashScene(Stage stage) {
+    private Scene buildSplashScene(Stage stage) 
+    {
         StackPane root = new StackPane();
         root.setPrefSize(EscapeRoomGame.WIDTH, EscapeRoomGame.HEIGHT);
 

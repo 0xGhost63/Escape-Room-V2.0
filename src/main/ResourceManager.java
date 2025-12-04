@@ -102,6 +102,10 @@ public class ResourceManager {
             java.net.URL url = getClass().getResource(path);
             if (url != null) {
                 AudioClip sound = new AudioClip(url.toExternalForm());
+                if (key.equals("background_music")) 
+                    {
+                    sound.setCycleCount(AudioClip.INDEFINITE);
+                }
                 sounds.put(key, sound);
             }
         } catch (Exception e) {
@@ -197,4 +201,3 @@ public class ResourceManager {
         gc.strokePolygon(xPoints, yPoints, 8);
     }
 }
-

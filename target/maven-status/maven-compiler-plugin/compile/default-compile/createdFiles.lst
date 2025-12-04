@@ -1,15 +1,4 @@
-EscapeRoomGame.class
-EscapeRoomGame$ColoredBlock.class
-EscapeRoomGame$Player.class
-GameController$1.class
-EscapeRoomGame$Goal.class
-ResourceManager.class
-EscapeRoomGame$Particle.class
-EscapeRoomGame$LeaderboardEntry.class
-GameController.class
-EsscapeRoomApp.class
-EscapeRoomGame$Platform.class
-EscapeRoomGame$Enemy.class
 GameController$2.class
+GameController$1.class
+GameController.class
 ImageGenerator.class
-EscapeRoomGame$Projectile.class

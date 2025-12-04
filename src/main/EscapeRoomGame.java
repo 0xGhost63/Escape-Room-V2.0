@@ -78,7 +78,7 @@ public class EscapeRoomGame
         lives = MAX_LIVES;
         gameOver = false;
         gameOverTimer = 0;
-
+        resourceManager.playSound("background_music", 0.1);
         initLevel();
     }
 
@@ -99,6 +99,8 @@ public class EscapeRoomGame
 
         // Ground
         platforms.add(new Platform(0, HEIGHT - 50, WIDTH, 50, Color.rgb(100, 100, 100)));
+
+        
 
         switch (level) {
             case 1:
@@ -516,7 +518,7 @@ public class EscapeRoomGame
         }
 
         lives = Math.max(0, lives - 1);
-        resourceManager.playSound("hit", 0.5);
+        resourceManager.playSound("hit", 1.0);
 
         player.x = 100;
         player.y = HEIGHT - 150;
