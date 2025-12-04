@@ -95,6 +95,7 @@ public class ResourceManager {
         loadSound("power_use", "/sounds/power_use.wav");
         loadSound("shield_activate", "/sounds/shield_activate.wav");
         loadSound("background_music", "/sounds/background_music.wav");
+        loadSound("aag","/sounds/aag.wav");
     }
     
     private void loadSound(String key, String path) {

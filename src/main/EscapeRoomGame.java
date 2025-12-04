@@ -518,7 +518,14 @@ public class EscapeRoomGame
         }
 
         lives = Math.max(0, lives - 1);
-        resourceManager.playSound("hit", 1.0);
+        if(!isPlayerInWater())
+        {
+            resourceManager.playSound("hit", 1.0);
+        }
+        else
+        {
+            resourceManager.playSound("aag",1.0);
+        }
 
         player.x = 100;
         player.y = HEIGHT - 150;
@@ -771,7 +778,7 @@ public class EscapeRoomGame
         void jump() {
             if (onGround) {
                 vy = PLAYER_JUMP_FORCE;
-                resourceManager.playSound("jump", 0.2);
+                resourceManager.playSound("jump", 0.01);
             }
         }
 
@@ -805,7 +812,7 @@ public class EscapeRoomGame
             for (int i = 0; i < 20; i++) {
                 particles.add(new Particle(x + PLAYER_SIZE / 2, y + PLAYER_SIZE / 2, color));
             }
-            resourceManager.playSound("absorb", 0.5);
+            resourceManager.playSound("absorb", 0.9);
         }
 
         void draw(GraphicsContext gc, EscapeRoomGame game, ResourceManager rm) {
@@ -848,7 +855,8 @@ public class EscapeRoomGame
             this.color = color;
         }
 
-        void draw(GraphicsContext gc, EscapeRoomGame game, ResourceManager rm) {
+        void draw(GraphicsContext gc, EscapeRoomGame game, ResourceManager rm) 
+        {
             if (absorbed) return;
 
             pulseFrame++;
