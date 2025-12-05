@@ -48,10 +48,11 @@ mvn javafx:run
   - Singleton loader for sprites and sounds from `src/resources`.  
   - Provides drawing fallbacks when image files are missing and helper methods
     to play/stop sounds.
-
+    
+<!-- REMOVED NOW !
 - `src/main/ImageGenerator.java`  
   - Optional utility to procedurally regenerate all PNG art assets under
-    `src/main/resources/images/**`.
+    `src/main/resources/images/**`. -->
 
 - `src/resources/game.fxml`  
   - FXML layout that declares a single `Canvas` and binds it to
