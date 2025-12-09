@@ -30,9 +30,9 @@ public class GameController implements Initializable
         game = new EscapeRoomGame();
         game.setPlayerName(playerName);
 
-        // --- FIX STARTS HERE ---
-        // Instead of trusting the Canvas to keep focus, we wait for the Scene to load
-        // and attach the key listeners to the WHOLE SCENE.
+        //Here i attached the key-listeners to the whole scene to properly detect the key pressings
+        //and releasings
+
         gameCanvas.sceneProperty().addListener((obs, oldScene, newScene) -> {
             if (newScene != null) {
                 newScene.setOnKeyPressed(this::handleKeyPressed);
@@ -40,29 +40,28 @@ public class GameController implements Initializable
             }
         });
 
-        // Optional: Allow clicking the canvas to ensure it's active (backup)
         gameCanvas.setFocusTraversable(true);
         gameCanvas.setOnMouseClicked(e -> gameCanvas.requestFocus());
         gameCanvas.requestFocus();
-        // --- FIX ENDS HERE ---
 
         // Game loop
-        gameLoop = new AnimationTimer() {
+        gameLoop = new AnimationTimer() 
+        {
             @Override
-            public void handle(long now) {
+            public void handle(long now) 
+            {
                 // Handle continuous movement
-                if (!game.gameWon && !game.isGameOver()) {
+                if (!game.gameWon && !game.isGameOver()) 
+                {
                     if (aPressed) game.player.moveLeft();
                     if (dPressed) game.player.moveRight();
                 }
 
-                // Update game
                 game.update();
 
                 // Render
                 game.render(gameCanvas.getGraphicsContext2D());
 
-                // On game over, return to the start / name input screen once
                 if (game.isGameOver() && !navigatedToStartAfterGameOver)
                 {
                     navigatedToStartAfterGameOver = true;
@@ -73,7 +72,8 @@ public class GameController implements Initializable
         gameLoop.start();
     }
 
-    private void handleKeyPressed(KeyEvent e) {
+    private void handleKeyPressed(KeyEvent e) 
+    {
         KeyCode code = e.getCode();
         
         switch (code) {
@@ -87,23 +87,27 @@ public class GameController implements Initializable
                 break;
             case W:
             case UP:
-                if (!game.isGameOver()) {
+                if (!game.isGameOver()) 
+                {
                     game.player.jump();
                 }
                 break;
             case SPACE:
-                if (game.gameWon) {
-                    // Only allow progression when at least two stars were earned
-                    if (game.getStarsEarnedThisLevel() <= 1) {
-                        // Replay same level
+                if (game.gameWon) 
+                {
+                    if (game.getStarsEarnedThisLevel() <= 1) 
+                    {
                         game.initLevel();
-                    } else {
+                    } 
+                    else 
+                    {
                         game.level++;
                         game.PLAYER_MOVE_SPEED+=0.2;
                         game.ENEMY_BASE_SPEED+=0.3; 
                         game.initLevel();
                     }
-                } else 
+                } 
+                else 
                 {
                     if (!game.isGameOver()) 
                     {
@@ -118,11 +122,10 @@ public class GameController implements Initializable
                 }
                 break;
             case E:
-                // Absorb nearby color
-                for (EscapeRoomGame.ColoredBlock cb : game.coloredBlocks) {
-                    if (!cb.absorbed &&
-                            Math.abs(game.player.x - cb.x) < 80 &&
-                            Math.abs(game.player.y - cb.y) < 80) {
+                for (EscapeRoomGame.ColoredBlock cb : game.coloredBlocks) 
+                {
+                    if (!cb.absorbed && Math.abs(game.player.x - cb.x) < 80 && Math.abs(game.player.y - cb.y) < 80) 
+                    {
                         game.player.absorbColor(cb.color);
                         cb.absorbed = true;
                         break;
@@ -130,7 +133,8 @@ public class GameController implements Initializable
                 }
                 break;
             case L:
-                if (e.isShiftDown()) {
+                if (e.isShiftDown()) 
+                {
                     game.grantBonusLife();
                 }
                 break;
@@ -153,11 +157,14 @@ public class GameController implements Initializable
         }
     }
 
-    public void setPlayerName(String name) {
-        if (name != null && !name.trim().isEmpty()) {
+    public void setPlayerName(String name) 
+    {
+        if (name != null && !name.trim().isEmpty()) 
+        {
             this.playerName = name.trim();
         }
-        if (game != null) {
+        if (game != null) 
+        {
             game.setPlayerName(this.playerName);
         }
     }

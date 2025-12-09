@@ -30,26 +30,26 @@ public class EsscapeRoomApp extends Application
         instance = this;
         primaryStage = stage;
 
-        // Load persisted leaderboard before showing the start screen
         EscapeRoomGame.loadLeaderboardFromDisk();
 
         stage.setTitle("Escape Room V2.0");
         stage.setResizable(false);
 
-        // First show a splash screen, then transition to the main start screen
         Scene splashScene = buildSplashScene(stage);
         stage.setScene(splashScene);
         stage.show();
 
         PauseTransition delay = new PauseTransition(Duration.seconds(5));
-        delay.setOnFinished(e -> {
+        delay.setOnFinished(e -> 
+        {
             Scene startScene = buildStartScene(stage);
             stage.setScene(startScene);
         });
         delay.play();
     }
 
-    public static void showStartScene() {
+    public static void showStartScene() 
+    {
         if (instance == null || primaryStage == null) {
             return;
         }

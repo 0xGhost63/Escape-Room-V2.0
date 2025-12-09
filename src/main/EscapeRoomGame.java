@@ -669,31 +669,38 @@ public class EscapeRoomGame
         return top;
     }
 
-    public static void loadLeaderboardFromDisk() {
+    public static void loadLeaderboardFromDisk() 
+    {
         leaderboard.clear();
         File file = new File(LEADERBOARD_FILE);
-        if (!file.exists()) {
+        if (!file.exists()) 
+        {
             return;
         }
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
-            while ((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) 
+            {
                 String[] parts = line.split("\t");
                 if (parts.length != 2) continue;
                 String name = parts[0].trim();
                 String scoreStr = parts[1].trim();
-                try {
+                try 
+                {
                     int score = Integer.parseInt(scoreStr);
                     leaderboard.add(new LeaderboardEntry(name, score));
-                } catch (NumberFormatException ignore) {
-                    // Skip malformed line
+                } 
+                catch (NumberFormatException ignore) 
+                {
+
                 }
             }
-            // Ensure leaderboard is sorted descending
+
             leaderboard.sort((a, b) -> Integer.compare(b.score, a.score));
-        } catch (IOException e) {
-            // If reading fails, just keep the in-memory leaderboard empty
+        } catch (IOException e) 
+        {
+            // If reading fails just keep the in-memory leaderboard empty
         }
     }
 
