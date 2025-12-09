@@ -13,7 +13,7 @@ public class GameController implements Initializable
     @FXML
     private Canvas gameCanvas;
     private long lastPowerTime = 0;
-    private static final long POWER_COOLDOWN = 500_000_000; 
+    private static final long POWER_COOLDOWN = 200_000_000; 
 
     private EscapeRoomGame game;
     private AnimationTimer gameLoop;
@@ -99,6 +99,8 @@ public class GameController implements Initializable
                         game.initLevel();
                     } else {
                         game.level++;
+                        game.PLAYER_MOVE_SPEED+=0.2;
+                        game.ENEMY_BASE_SPEED+=0.3; 
                         game.initLevel();
                     }
                 } else 

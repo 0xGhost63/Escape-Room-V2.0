@@ -19,17 +19,14 @@ public class EscapeRoomGame
     public static final int HEIGHT = 700;
     public static final int PLAYER_SIZE = 35;
     private static final int MAX_LIVES = 3;
-    private static final double PLAYER_MOVE_SPEED = 2.3;
+    static  double PLAYER_MOVE_SPEED = 2.3;
     private static final double PLAYER_JUMP_FORCE = -10;
     private static final double PLAYER_GRAVITY = 0.45;
     private static final double PLAYER_FRICTION = 0.9;
-    private static final double ENEMY_BASE_SPEED = 3;
+    static  double ENEMY_BASE_SPEED = 3;
     private static final int GAME_OVER_DELAY_FRAMES = 180;
     private static final int POINTS_PER_ENEMY = 100;
 
-    /**
-     * Simple in-memory leaderboard entry.
-     */
     public static class LeaderboardEntry 
     {
         public final String name;
@@ -362,11 +359,6 @@ public class EscapeRoomGame
             String starsText = buildStarsText(starsEarnedThisLevel);
             drawCenteredString(gc, "Rating: " + starsText, WIDTH / 2.0, HEIGHT / 2.0 - 110);
 
-            // // Kills info
-            // gc.setFont(Font.font("Arial", FontWeight.NORMAL, 24));
-            // gc.setFill(Color.WHITE);
-            // String killsInfo = "Enemies defeated: " + enemiesKilledThisLevel + " / " + Math.max(1, enemiesAtLevelStart);
-            // drawCenteredString(gc, killsInfo, WIDTH / 2.0, HEIGHT / 2.0 - 70);
 
             // Instructions depending on stars
             gc.setFont(Font.font("Arial", FontWeight.NORMAL, 30));
