@@ -168,9 +168,9 @@ public class EsscapeRoomApp extends Application
         controlsBox.getChildren().add(makeControlLabel("A / Left Arrow – Move left"));
         controlsBox.getChildren().add(makeControlLabel("D / Right Arrow – Move right"));
         controlsBox.getChildren().add(makeControlLabel("W / Up Arrow – Jump"));
-        controlsBox.getChildren().add(makeControlLabel("SPACE – Shoot / use power"));
         controlsBox.getChildren().add(makeControlLabel("E – Absorb nearby color"));
-        // controlsBox.getChildren().add(makeControlLabel("SHIFT + L – Hidden bonus life"));
+        controlsBox.getChildren().add(makeControlLabel("S – Switch Firing Direction"));
+        controlsBox.getChildren().add(makeControlLabel("SPACE – Shoot / use power"));
 
         bottomBox.getChildren().addAll(leaderboardBox, controlsBox);
         root.setBottom(bottomBox);
@@ -198,18 +198,16 @@ public class EsscapeRoomApp extends Application
 
     private void startGame(Stage stage, String playerName) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(EsscapeRoomApp.class.getResource("/game.fxml"));
-        // Note: You might want to add CSS to the game scene too if needed,
+
         // by modifying the FXML or adding stylesheets to the loaded scene here.
         Scene scene = new Scene(fxmlLoader.load(), EscapeRoomGame.WIDTH, EscapeRoomGame.HEIGHT);
 
-        // Inject player name into controller
         Object controller = fxmlLoader.getController();
         if (controller instanceof GameController) {
             ((GameController) controller).setPlayerName(playerName);
         }
 
         stage.setScene(scene);
-        // Ensure game canvas gets focus
         scene.getRoot().requestFocus();
     }
 

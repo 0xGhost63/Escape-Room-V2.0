@@ -822,29 +822,44 @@ public class EscapeRoomGame
             }
         }
 
-        void shoot() {
-            if (currentColor.equals("red")) {
-                projectiles.add(new Projectile(x + PLAYER_SIZE, y + PLAYER_SIZE / 2, 7, 0, "fire", 2));
+        void shoot(double directionMultiplier) 
+        {
+            double projectileSpeed = 7.0; 
+            double xVelocity = projectileSpeed * directionMultiplier;
+            double yVelocity = 0; 
+    
+            if (currentColor.equals("red")) 
+            {
+                projectiles.add(new Projectile(x + PLAYER_SIZE, y + PLAYER_SIZE / 2, xVelocity, yVelocity, "fire", 2));
                 resourceManager.playSound("shoot", 0.4);
-            } else if (currentColor.equals("blue")) {
-                projectiles.add(new Projectile(x + PLAYER_SIZE, y + PLAYER_SIZE / 2, 6, 0, "ice", 1));
+            } 
+            else if (currentColor.equals("blue")) 
+            {
+                xVelocity = 6.0 * directionMultiplier; 
+                projectiles.add(new Projectile(x + PLAYER_SIZE, y + PLAYER_SIZE / 2, xVelocity, yVelocity, "ice", 1));
                 resourceManager.playSound("shoot", 0.4);
-            } else if (currentColor.equals("yellow")) {
-                projectiles.add(new Projectile(x + PLAYER_SIZE, y + PLAYER_SIZE / 2, 8, 0, "electric", 3));
+            } 
+            else if (currentColor.equals("yellow")) 
+            {
+                xVelocity = 8.0 * directionMultiplier; 
+                projectiles.add(new Projectile(x + PLAYER_SIZE, y + PLAYER_SIZE / 2, xVelocity, yVelocity, "electric", 3));
                 resourceManager.playSound("shoot", 0.4);
             }
         }
 
-        void usePower() {
-            if (currentColor.equals("purple")) {
-                // Shield
+        void usePower(double directionMultiplier) 
+        {
+            if (currentColor.equals("purple")) 
+            {
+                // Shield logic unchanged
                 shieldTimer = 300;
                 hasShield = true;
                 currentColor = "";
                 resourceManager.playSound("shield_activate", 0.6);
-            } else 
+            } 
+            else 
             {
-                shoot();
+                shoot(directionMultiplier); 
             }
         }
 

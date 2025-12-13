@@ -21,8 +21,9 @@ public class GameController implements Initializable
     private boolean dPressed = false;
     private String playerName = "Player";
     private boolean navigatedToStartAfterGameOver = false;
+    // We'll store the sign: -1.0 for Left, 1.0 for Right .
+    private double lastMoveDirection = 1.0;
 
-    // In GameController.java
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
@@ -72,76 +73,84 @@ public class GameController implements Initializable
         gameLoop.start();
     }
 
-    private void handleKeyPressed(KeyEvent e) 
+private void handleKeyPressed(KeyEvent e) 
+{
+    KeyCode code = e.getCode();
+    
+    switch (code) 
     {
-        KeyCode code = e.getCode();
-        
-        switch (code) {
-            case A:
-            case LEFT:
-                aPressed = true;
-                break;
-            case D:
-            case RIGHT:
-                dPressed = true;
-                break;
-            case W:
-            case UP:
-                if (!game.isGameOver()) 
+        case A:
+        case LEFT:
+            aPressed = true;
+            break;
+        case D:
+        case RIGHT:
+            dPressed = true;
+
+            break;
+        case S: 
+            if (!game.isGameOver()) 
+            {
+                lastMoveDirection = lastMoveDirection * -1.0; 
+            }
+            break;
+        case W:
+        case UP:
+            if (!game.isGameOver()) 
+            {
+                game.player.jump();
+            }
+            break;
+        case SPACE:
+            if (game.gameWon) 
+            {
+                if (game.getStarsEarnedThisLevel() <= 1) 
                 {
-                    game.player.jump();
-                }
-                break;
-            case SPACE:
-                if (game.gameWon) 
-                {
-                    if (game.getStarsEarnedThisLevel() <= 1) 
-                    {
-                        game.initLevel();
-                    } 
-                    else 
-                    {
-                        game.level++;
-                        game.PLAYER_MOVE_SPEED+=0.2;
-                        game.ENEMY_BASE_SPEED+=0.3; 
-                        game.initLevel();
-                    }
+                    game.initLevel();
                 } 
                 else 
                 {
-                    if (!game.isGameOver()) 
+                    game.level++;
+                    game.PLAYER_MOVE_SPEED+=0.2;
+                    game.ENEMY_BASE_SPEED+=0.3; 
+                    game.initLevel();
+                }
+            } 
+            else 
+            {
+                if (!game.isGameOver()) 
+                {
+                    long now = System.nanoTime();
+                    if (now - lastPowerTime >= POWER_COOLDOWN) 
                     {
-                        long now = System.nanoTime();
-
-                        if (now - lastPowerTime >= POWER_COOLDOWN) 
-                        {
-                            game.player.usePower();
-                            lastPowerTime = now;
-                        }
+                        game.player.usePower(lastMoveDirection);                          
+                        lastPowerTime = now;
                     }
                 }
-                break;
-            case E:
-                for (EscapeRoomGame.ColoredBlock cb : game.coloredBlocks) 
+            }
+            break;
+        case E:
+            for (EscapeRoomGame.ColoredBlock cb : game.coloredBlocks) 
+            {
+                if (!cb.absorbed && Math.abs(game.player.x - cb.x) < 80 && Math.abs(game.player.y - cb.y) < 80) 
                 {
-                    if (!cb.absorbed && Math.abs(game.player.x - cb.x) < 80 && Math.abs(game.player.y - cb.y) < 80) 
-                    {
-                        game.player.absorbColor(cb.color);
-                        cb.absorbed = true;
-                        break;
-                    }
+                    game.player.absorbColor(cb.color);
+                    cb.absorbed = true;
+                    break;
                 }
-                break;
-            case L:
-                if (e.isShiftDown()) 
-                {
-                    game.grantBonusLife();
-                }
-                break;
-        }
+            }
+            break;
+        case L:
+            if (e.isShiftDown()) 
+            {
+                game.grantBonusLife();
+            }
+            break;
     }
+}
 
-    private void handleKeyReleased(KeyEvent e) {
+    private void handleKeyReleased(KeyEvent e) 
+    {
         KeyCode code = e.getCode();
         
         switch (code) 
