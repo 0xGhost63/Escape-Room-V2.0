@@ -2,17 +2,28 @@
 
 A JavaFX escape-room style platformer with color-based powers and multiple levels.
 
+### Gameplay
+<p align="center">
+  <img src="https://raw.githubusercontent.com/0xGhost63/Escape-Room-V2.0/main/src/resources/images/gameplay_screenshots/Screenshot%20from%202025-12-14%2011-46-42.png" width="700"/>
+</p>
+
+### Game Won
+<p align="center">
+  <img src="https://raw.githubusercontent.com/0xGhost63/Escape-Room-V2.0/main/src/resources/images/gameplay_screenshots/Screenshot%20from%202025-12-14%2011-48-17.png" width="700"/>
+</p>
+
+
 ### Controls
 - `A / Left Arrow` – Move left  
 - `D / Right Arrow` – Move right  
 - `W / Up Arrow` – Jump  
 - `SPACE` – Shoot or trigger the currently held power  
 - `E` – Absorb the closest color block in range  
-- `S` – Switch Firing direction  
+- `S` – Switch firing direction  
 - `SHIFT + L` – Secret back door that grants one extra life (up to three)
 
 ## Building and Running
-Requirements: Java 11+ and Maven 3.6+
+Requirements: Java 11+ and Maven 3.6+
 
 ```bash
 # Compile the project
@@ -20,47 +31,3 @@ mvn clean compile
 
 # Launch the JavaFX application
 mvn javafx:run
-```
-
-## Project Layout
-
-- `pom.xml`  
-  - Declares JavaFX modules (`controls`, `fxml`, `media`) and the OpenJFX Maven
-    plugin so `mvn javafx:run` works out-of-the-box.
-  - Uses a simplified layout: Java sources in `src/main`, resources in `src/resources`.
-
-- `src/main/EsscapeRoomApp.java`  
-  - JavaFX `Application` entry point (also used by `mvn javafx:run`).  
-  - Shows a splash screen, then a start screen with player name input and a
-    leaderboard, and finally loads the main game scene.
-
-- `src/main/GameController.java`  
-  - FXML controller for `game.fxml`.  
-  - Owns the `Canvas`, `EscapeRoomGame` instance, and the `AnimationTimer` loop.  
-  - Handles input (movement keys, powers, absorb, bonus life) and forwards
-    actions to the game engine.
-
-- `src/main/EscapeRoomGame.java`  
-  - Core gameplay engine: levels, enemies, color blocks, projectiles, particles,
-    platforms, goal, lives, scoring, and leaderboard.  
-  - Renders everything to a `GraphicsContext` and updates game state each frame.
-
-- `src/main/ResourceManager.java`  
-  - Singleton loader for sprites and sounds from `src/resources`.  
-  - Provides drawing fallbacks when image files are missing and helper methods
-    to play/stop sounds.
-    
-
-- `src/resources/game.fxml`  
-  - FXML layout that declares a single `Canvas` and binds it to
-    `GameController`.
-
-- `src/resources/images/**`  
-  - Generated PNG art assets grouped by entity type (players, enemies, blocks,
-    platforms, projectiles, particles, goals, UI).
-
-- `src/resources/sounds/`  
-  - Drop-in folder for `.wav` or `.mp3` effects (jump, shoot, hit, etc.). Sounds
-    are optional; missing files are ignored safely.
-
-
