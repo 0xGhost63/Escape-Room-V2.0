@@ -8,6 +8,7 @@ A JavaFX escape-room style platformer with color-based powers and multiple level
 - `W / Up Arrow` – Jump  
 - `SPACE` – Shoot or trigger the currently held power  
 - `E` – Absorb the closest color block in range  
+- `S` – Switch Firing direction  
 - `SHIFT + L` – Secret back door that grants one extra life (up to three)
 
 ## Building and Running
@@ -49,10 +50,6 @@ mvn javafx:run
   - Provides drawing fallbacks when image files are missing and helper methods
     to play/stop sounds.
     
-<!-- REMOVED NOW !
-- `src/main/ImageGenerator.java`  
-  - Optional utility to procedurally regenerate all PNG art assets under
-    `src/main/resources/images/**`. -->
 
 - `src/resources/game.fxml`  
   - FXML layout that declares a single `Canvas` and binds it to
@@ -66,9 +63,4 @@ mvn javafx:run
   - Drop-in folder for `.wav` or `.mp3` effects (jump, shoot, hit, etc.). Sounds
     are optional; missing files are ignored safely.
 
-## Troubleshooting
-- **No sounds**: ensure WAV files exist under `src/resources/sounds/`.  
-- **Canvas not focused**: click the window once to regain keyboard focus if
-  keys don’t seem responsive.
 
-Enjoy building new levels and tweaking the Escape Room experience!
