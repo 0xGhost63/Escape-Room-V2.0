@@ -557,7 +557,7 @@ public class EscapeRoomGame
         }
         else
         {
-            resourceManager.playSound("aag",1.0);
+            resourceManager.playSound("aaaaaaaaaaaaaaaaaaggggggggggggggggg",1.0);
         }
 
         player.x = 100;
@@ -619,11 +619,10 @@ public class EscapeRoomGame
         return gameOver;
     }
 
-    // ---- Scoring / leaderboard helpers ----
 
     private void calculateStarsForCurrentLevel() {
         if (enemiesAtLevelStart <= 0) {
-            // No enemies: always grant 3 stars
+
             starsEarnedThisLevel = 3;
             return;
         }

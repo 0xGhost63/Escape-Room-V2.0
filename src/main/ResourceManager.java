@@ -2,10 +2,8 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
-import javafx.scene.paint.Color;
 
 public class ResourceManager {
     private static ResourceManager instance;
@@ -149,61 +147,5 @@ public class ResourceManager {
         }
     }
     
-    // Fallback drawing methods when images are not available
-    public void drawPlayerFallback(GraphicsContext gc, double x, double y, int size, Color color) {
-        gc.setFill(color);
-        gc.fillOval(x, y, size, size);
-        gc.setStroke(Color.BLACK);
-        gc.strokeOval(x, y, size, size);
-        
-        // Eyes
-        gc.setFill(Color.WHITE);
-        gc.fillOval(x + 8, y + 10, 8, 8);
-        gc.fillOval(x + 20, y + 10, 8, 8);
-        gc.setFill(Color.BLACK);
-        gc.fillOval(x + 10, y + 12, 4, 4);
-        gc.fillOval(x + 22, y + 12, 4, 4);
-    }
-    
-    public void drawEnemyFallback(GraphicsContext gc, double x, double y, int size, Color color) {
-        gc.setFill(color);
-        gc.fillOval(x, y, size, size);
-        gc.setStroke(Color.BLACK);
-        gc.strokeOval(x, y, size, size);
-    }
-    
-    public void drawBlockFallback(GraphicsContext gc, int x, int y, int width, int height, Color color) {
-        gc.setFill(color);
-        gc.fillRect(x, y, width, height);
-        gc.setStroke(color.brighter());
-        gc.strokeRect(x, y, width, height);
-    }
-    
-    public void drawPlatformFallback(GraphicsContext gc, int x, int y, int width, int height, Color color) {
-        gc.setFill(color);
-        gc.fillRect(x, y, width, height);
-        gc.setStroke(color.brighter());
-        gc.strokeRect(x, y, width, height);
-    }
-    
-    public void drawProjectileFallback(GraphicsContext gc, double x, double y, int size, Color color) {
-        gc.setFill(color);
-        gc.fillOval(x - size/2, y - size/2, size, size);
-        gc.setFill(color.brighter());
-        gc.fillOval(x - size/2 + 2, y - size/2 + 2, size - 4, size - 4);
-    }
-    
-    public void drawParticleFallback(GraphicsContext gc, double x, double y, int size, Color color, double alpha) {
-        gc.setFill(Color.color(color.getRed(), color.getGreen(), color.getBlue(), alpha));
-        gc.fillOval(x, y, size, size);
-    }
-    
-    public void drawGoalFallback(GraphicsContext gc, int x, int y, int pulse) {
-        gc.setFill(Color.YELLOW);
-        double[] xPoints = {x + 25, x + 40 + pulse, x + 30, x + 35, x + 25, x + 15, x + 20, x + 10 - pulse};
-        double[] yPoints = {y + pulse, y + 20, y + 25, y + 45, y + 35, y + 45, y + 25, y + 20};
-        gc.fillPolygon(xPoints, yPoints, 8);
-        gc.setStroke(Color.ORANGE);
-        gc.strokePolygon(xPoints, yPoints, 8);
-    }
+   
 }

@@ -1,3 +1,4 @@
+Player	2000
 Ghost	1900
 Test	1900
 Player	1000
@@ -23,4 +24,7 @@ Player	0
 d	0
 d	0
 DJHSAF	0
+Test	0
+Test	0
+Test	0
 Test	0
