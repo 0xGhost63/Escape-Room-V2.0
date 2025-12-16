@@ -557,7 +557,7 @@ public class EscapeRoomGame
         }
         else
         {
-            resourceManager.playSound("aaaaaaaaaaaaaaaaaaggggggggggggggggg",1.0);
+            resourceManager.playSound("aag",1.0);
         }
 
         player.x = 100;
@@ -619,10 +619,11 @@ public class EscapeRoomGame
         return gameOver;
     }
 
+    // ---- Scoring / leaderboard helpers ----
 
     private void calculateStarsForCurrentLevel() {
         if (enemiesAtLevelStart <= 0) {
-
+        
             starsEarnedThisLevel = 3;
             return;
         }
@@ -878,10 +879,7 @@ public class EscapeRoomGame
             
             if (rm.hasImage(imageKey)) {
                 gc.drawImage(rm.getImage(imageKey), x, y, PLAYER_SIZE, PLAYER_SIZE);
-            } else {
-                Color playerColor = currentColor.isEmpty() ? Color.GRAY : game.getColorFromString(currentColor);
-                rm.drawPlayerFallback(gc, x, y, PLAYER_SIZE, playerColor);
-            }
+            } 
 
             // Shield effect
             if (hasShield) {
@@ -920,10 +918,8 @@ public class EscapeRoomGame
             String imageKey = "block_" + color;
             if (rm.hasImage(imageKey)) {
                 gc.drawImage(rm.getImage(imageKey), x - pulse / 2, y - pulse / 2, width + pulse, height + pulse);
-            } else {
-                Color blockColor = game.getColorFromString(color);
-                rm.drawBlockFallback(gc, x - pulse / 2, y - pulse / 2, width + pulse, height + pulse, blockColor);
-            }
+            } 
+
         }
     }
 
@@ -984,9 +980,8 @@ public class EscapeRoomGame
             String imageKey = "enemy_" + type;
             if (rm.hasImage(imageKey)) {
                 gc.drawImage(rm.getImage(imageKey), x, y, 30, 30);
-            } else {
-                rm.drawEnemyFallback(gc, x, y, 30, color);
-            }
+            } 
+ 
 
             // Health bar
             gc.setFill(Color.RED);
@@ -1028,7 +1023,6 @@ public class EscapeRoomGame
                 if (type.equals("fire")) projColor = Color.RED;
                 else if (type.equals("ice")) projColor = Color.CYAN;
                 else if (type.equals("electric")) projColor = Color.YELLOW;
-                rm.drawProjectileFallback(gc, x, y, 10, projColor);
             }
         }
     }
@@ -1061,10 +1055,8 @@ public class EscapeRoomGame
                 gc.setGlobalAlpha(alpha);
                 gc.drawImage(rm.getImage(imageKey), x, y, 5, 5);
                 gc.setGlobalAlpha(1.0);
-            } else {
-                Color particleColor = game.getColorFromString(color);
-                rm.drawParticleFallback(gc, x, y, 5, particleColor, alpha);
-            }
+            } 
+
         }
     }
 
@@ -1091,9 +1083,8 @@ public class EscapeRoomGame
             
             if (rm.hasImage(imageKey)) {
                 gc.drawImage(rm.getImage(imageKey), x, y, width, height);
-            } else {
-                rm.drawPlatformFallback(gc, x, y, width, height, color);
-            }
+            } 
+   
         }
     }
 
@@ -1118,9 +1109,8 @@ public class EscapeRoomGame
 
             if (rm.hasImage("goal")) {
                 gc.drawImage(rm.getImage("goal"), x, y + pulse, 50, 50);
-            } else {
-                rm.drawGoalFallback(gc, x, y, pulse);
-            }
+            } 
+            
         }
     }
 }

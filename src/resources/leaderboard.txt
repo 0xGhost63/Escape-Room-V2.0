@@ -1,30 +1,6 @@
-Player	2000
-Ghost	1900
+Ghost	63000
+PlayerX	2000
+PlayerY	1900
 Test	1900
 Player	1000
-Player	300
-dddddd a	300
-Test	300
-Test	300
-AAAAAA	200
-Player	200
-Player	100
-basjkf	100
-gay	0
-gay	0
-Player	0
-gay	0
-gay	0
-gay	0
-Player	0
-gay	0
-Player	0
-Player	0
-Player	0
-d	0
-d	0
-DJHSAF	0
-Test	0
-Test	0
-Test	0
-Test	0
+
