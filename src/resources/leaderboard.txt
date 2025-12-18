@@ -1,6 +1,18 @@
 Ghost	63000
+Test	3200
+Test	2200
 PlayerX	2000
 PlayerY	1900
 Test	1900
+Test	1500
+Tst	1200
 Player	1000
-
+Player	400
+Player	300
+Test	300
+efukdbhfced	0
+asdfgh	0
+gh	0
+Player	0
+Player	0
+Player	0

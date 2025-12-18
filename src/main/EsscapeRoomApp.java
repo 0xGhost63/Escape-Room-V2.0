@@ -1,3 +1,4 @@
+//FIN !
 import java.io.IOException;
 import java.util.List;
 
@@ -42,8 +43,7 @@ public class EsscapeRoomApp extends Application
         PauseTransition delay = new PauseTransition(Duration.seconds(5));
         delay.setOnFinished(e -> 
         {
-            Scene startScene = buildStartScene(stage);
-            stage.setScene(startScene);
+            showStartScene(); 
         });
         delay.play();
     }
@@ -56,6 +56,7 @@ public class EsscapeRoomApp extends Application
         Scene startScene = instance.buildStartScene(primaryStage);
         primaryStage.setScene(startScene);
     }
+    // StackPane Layout + Canvas
 
     private Scene buildSplashScene(Stage stage)
     {
@@ -66,27 +67,20 @@ public class EsscapeRoomApp extends Application
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         ResourceManager rc = ResourceManager.getInstance();
-        if (rc.hasImage("start")) {
-            gc.drawImage(rc.getImage("start"), 0, 0, 1200, 700);
-        } else {
-            // Fallback if image missing
-            gc.setFill(javafx.scene.paint.Color.BLACK);
-            gc.fillRect(0,0, 1200, 700);
-            gc.setFill(javafx.scene.paint.Color.WHITE);
-            gc.fillText("Loading...", 600, 350);
-        }
-
+        gc.drawImage(rc.getImage("start"), 0, 0, 1200, 700);
+        
         root.getChildren().add(canvas);
 
         Scene scene = new Scene(root, EscapeRoomGame.WIDTH, EscapeRoomGame.HEIGHT);
 
-        // Play background audio
         rc.playSound("background_music", 0.1);
 
         return scene;
     }
 
-    private Scene buildStartScene(Stage stage) {
+    private Scene buildStartScene(Stage stage) 
+    {
+        //  ===> BorderPane !
         BorderPane root = new BorderPane();
         root.setPrefSize(EscapeRoomGame.WIDTH, EscapeRoomGame.HEIGHT);
 
@@ -97,6 +91,7 @@ public class EsscapeRoomApp extends Application
         BorderPane.setMargin(title, new Insets(20, 0, 10, 0));
         root.setTop(title);
 
+        // Center Box (NameBox,Label,Button !)
         VBox centerBox = new VBox(15); 
         centerBox.setAlignment(Pos.CENTER);
 
@@ -111,12 +106,16 @@ public class EsscapeRoomApp extends Application
         Button startButton = new Button("Start Game");
         startButton.getStyleClass().add("start-button");
 
+        //Event-Handling of the Start Button actually starts the game !
         startButton.setOnAction(e -> {
             String entered = nameField.getText();
             String playerName = (entered == null || entered.trim().isEmpty()) ? "Player" : entered.trim();
-            try {
+            try 
+            {
                 startGame(stage, playerName);
-            } catch (IOException ex) {
+            } 
+            catch (IOException ex)
+            {
                 ex.printStackTrace();
             }
         });
@@ -192,10 +191,11 @@ public class EsscapeRoomApp extends Application
         return label;
     }
 
-    private void startGame(Stage stage, String playerName) throws IOException {
+    private void startGame(Stage stage, String playerName) throws IOException 
+    {
+        // game.fxml ---> Anchorpane + Canvas 
         FXMLLoader fxmlLoader = new FXMLLoader(EsscapeRoomApp.class.getResource("/game.fxml"));
 
-        // by modifying the FXML or adding stylesheets to the loaded scene here.
         Scene scene = new Scene(fxmlLoader.load(), EscapeRoomGame.WIDTH, EscapeRoomGame.HEIGHT);
 
         Object controller = fxmlLoader.getController();
@@ -207,7 +207,8 @@ public class EsscapeRoomApp extends Application
         scene.getRoot().requestFocus();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         launch();
     }
 }

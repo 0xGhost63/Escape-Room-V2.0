@@ -63,10 +63,8 @@ public class EscapeRoomGame
 
     // Shared leaderboard across runs of the game instance
     private static final ArrayList<LeaderboardEntry> leaderboard = new ArrayList<>();
-    // Store the leaderboard in a visible text file under the project's resources folder
-    // so it is easy to inspect and edit during development.
-    private static final String LEADERBOARD_FILE =
-            "src" + File.separator + "resources" + File.separator + "leaderboard.txt";
+
+    private static final String LEADERBOARD_FILE ="src" + File.separator + "resources" + File.separator + "leaderboard.txt";
 
     public EscapeRoomGame() 
     {
@@ -77,7 +75,6 @@ public class EscapeRoomGame
         lives = MAX_LIVES;
         gameOver = false;
         gameOverTimer = 0;
-        // resourceManager.playSound("background_music", 0.1);
         initLevel();
     }
 
@@ -149,7 +146,7 @@ public class EscapeRoomGame
         platforms.add(new Platform(500, HEIGHT - 250, 150, 20, Color.rgb(100, 100, 100)));
         platforms.add(new Platform(750, HEIGHT - 200, 100, 20, Color.rgb(100, 100, 100)));
 
-        // Water pool
+        // Fire pool
         platforms.add(new Platform(600, HEIGHT - 50, 120, 50, Color.rgb(255, 85, 0)));
 
         enemies.add(new Enemy(350, HEIGHT - 100, "fire"));
@@ -180,7 +177,6 @@ public class EscapeRoomGame
     }
 
     private void createLevel4() {
-        // All colors needed (without green power)
         coloredBlocks.add(new ColoredBlock(180, HEIGHT - 120, 50, 50, "red"));
         coloredBlocks.add(new ColoredBlock(280, HEIGHT - 220, 50, 50, "blue"));
         coloredBlocks.add(new ColoredBlock(380, HEIGHT - 320, 50, 50, "yellow"));
@@ -202,9 +198,7 @@ public class EscapeRoomGame
     }
 
     private void createLevel5() {
-        // Master challenge - complex but memory efficient
-        
-        // Create vertical layers with strategic gaps
+
         // Layer 1: Ground level stepping stones
         platforms.add(new Platform(150, HEIGHT - 120, 90, 20, Color.rgb(100, 100, 100)));
         platforms.add(new Platform(300, HEIGHT - 140, 80, 20, Color.rgb(100, 100, 100)));
@@ -460,7 +454,8 @@ public class EscapeRoomGame
         gc.fillText(text, x - width / 2, y);
     }
 
-    public Color getColorFromString(String color) {
+    public Color getColorFromString(String color) 
+    {
         switch (color) {
             case "red": return Color.RED;
             case "blue": return Color.BLUE;
@@ -477,7 +472,10 @@ public class EscapeRoomGame
             return;
         }
 
-        if (gameWon) return;
+        if (gameWon) 
+        {   
+            return;
+        }
 
         player.update(platforms);
 
@@ -658,10 +656,9 @@ public class EscapeRoomGame
         return top;
     }
 
-    /**
-     * Public snapshot of the leaderboard to be used by menus / start screens.
-     */
-    public static ArrayList<LeaderboardEntry> getLeaderboardSnapshot(int max) {
+
+    public static ArrayList<LeaderboardEntry> getLeaderboardSnapshot(int max) 
+    {
         ArrayList<LeaderboardEntry> top = new ArrayList<>();
         for (int i = 0; i < leaderboard.size() && i < max; i++) {
             top.add(leaderboard.get(i));
@@ -700,7 +697,7 @@ public class EscapeRoomGame
             leaderboard.sort((a, b) -> Integer.compare(b.score, a.score));
         } catch (IOException e) 
         {
-            // If reading fails just keep the in-memory leaderboard empty
+            
         }
     }
 
@@ -712,7 +709,7 @@ public class EscapeRoomGame
                 writer.newLine();
             }
         } catch (IOException e) {
-            // Ignore save errors to avoid crashing the game
+            
         }
     }
 
@@ -749,7 +746,8 @@ public class EscapeRoomGame
         return sb.toString();
     }
 
-    public class Player {
+    public class Player 
+    {
         public double x, y, vx, vy;
         public boolean onGround;
         public String currentColor = "";
@@ -971,7 +969,8 @@ public class EscapeRoomGame
             health -= damage;
         }
 
-        boolean collidesWith(Player p) {
+        boolean collidesWith(Player p) 
+        {
             return Math.abs(p.x + PLAYER_SIZE / 2 - (x + 15)) < 30 &&
                     Math.abs(p.y + PLAYER_SIZE / 2 - (y + 15)) < 30;
         }
@@ -1060,7 +1059,8 @@ public class EscapeRoomGame
         }
     }
 
-    public class Platform {
+    public class Platform 
+    {
         int x, y, width, height;
         Color color;
         boolean isWater;

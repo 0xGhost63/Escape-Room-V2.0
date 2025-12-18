@@ -5,12 +5,14 @@ import java.util.Map;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 
-public class ResourceManager {
+public class ResourceManager 
+{
     private static ResourceManager instance;
     private Map<String, Image> images = new HashMap<>();
     private Map<String, AudioClip> sounds = new HashMap<>();
     
-    private ResourceManager() {
+    private ResourceManager() 
+    {
         loadImages();
         loadSounds();
     }
@@ -107,13 +109,14 @@ public class ResourceManager {
             if (url != null) {
                 AudioClip sound = new AudioClip(url.toExternalForm());
                 if (key.equals("background_music")) 
-                    {
+                {
                     sound.setCycleCount(AudioClip.INDEFINITE);
                 }
                 sounds.put(key, sound);
             }
-        } catch (Exception e) {
-            // Sound file not found - this is okay, game will work without sounds
+        } catch (Exception e) 
+        {
+            
         }
     }
     

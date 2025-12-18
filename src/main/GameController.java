@@ -21,7 +21,6 @@ public class GameController implements Initializable
     private boolean dPressed = false;
     private String playerName = "Player";
     private boolean navigatedToStartAfterGameOver = false;
-    // We'll store the sign: -1.0 for Left, 1.0 for Right .
     private double lastMoveDirection = 1.0;
 
 
@@ -31,8 +30,7 @@ public class GameController implements Initializable
         game = new EscapeRoomGame();
         game.setPlayerName(playerName);
 
-        //Here i attached the key-listeners to the whole scene to properly detect the key pressings
-        //and releasings
+  
 
         gameCanvas.sceneProperty().addListener((obs, oldScene, newScene) -> {
             if (newScene != null) {
@@ -45,13 +43,11 @@ public class GameController implements Initializable
         gameCanvas.setOnMouseClicked(e -> gameCanvas.requestFocus());
         gameCanvas.requestFocus();
 
-        // Game loop
         gameLoop = new AnimationTimer() 
         {
             @Override
             public void handle(long now) 
             {
-                // Handle continuous movement
                 if (!game.gameWon && !game.isGameOver()) 
                 {
                     if (aPressed) game.player.moveLeft();
@@ -60,7 +56,6 @@ public class GameController implements Initializable
 
                 game.update();
 
-                // Render
                 game.render(gameCanvas.getGraphicsContext2D());
 
                 if (game.isGameOver() && !navigatedToStartAfterGameOver)
